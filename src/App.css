@@ -16,3 +16,8 @@
   align-items: center;
   justify-content: space-between;
 }
+.responsive-video {
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover; /* This ensures the video maintains its aspect ratio and covers the entire viewport */
+}
