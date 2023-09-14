@@ -15,7 +15,8 @@ function App(){
   },[])
 
 
-
+  const canvasWidth = videoRef.current ? videoRef.current.videoWidth : 800;
+  const canvasHeight = (canvasWidth / aspectRatio) * 0.8
   // OPEN YOU FACE WEBCAM
   const startVideo = ()=>{
     navigator.mediaDevices.getUserMedia({video:true})
@@ -73,8 +74,8 @@ function App(){
         
       <video className='responsive-video' crossOrigin="anonymous" ref={videoRef} autoPlay></video>
       </Container>
-      <canvas ref={canvasRef} width="800" height="750"
-      className="appcanvas"/>
+      <canvas ref={canvasRef} width={canvasWidth} height={canvasHeight} className="appcanvas" />
+
     </Container>
     )
 
