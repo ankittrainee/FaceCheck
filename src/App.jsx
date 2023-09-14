@@ -1,6 +1,7 @@
 import {useRef,useEffect} from 'react'
 import './App.css'
 import * as faceapi from 'face-api.js'
+import { Container } from 'react-bootstrap'
 
 function App(){
   const videoRef = useRef()
@@ -48,8 +49,8 @@ function App(){
       // DRAW YOU FACE IN WEBCAM
       canvasRef.current.innerHtml = faceapi.createCanvasFromMedia(videoRef.current)
       faceapi.matchDimensions(canvasRef.current,{
-        width:900,
-        height:700,
+        width:940,
+        height:650
       })
 
       const resized = faceapi.resizeResults(detections,{
