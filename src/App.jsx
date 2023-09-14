@@ -15,8 +15,7 @@ function App(){
   },[])
 
 
-  const canvasWidth = videoRef.current ? videoRef.current.videoWidth : 800;
-  const canvasHeight = (canvasWidth / aspectRatio) * 0.8
+
   // OPEN YOU FACE WEBCAM
   const startVideo = ()=>{
     navigator.mediaDevices.getUserMedia({video:true})
@@ -50,13 +49,13 @@ function App(){
       // DRAW YOU FACE IN WEBCAM
       canvasRef.current.innerHtml = faceapi.createCanvasFromMedia(videoRef.current)
       faceapi.matchDimensions(canvasRef.current,{
-        width:800,
-        height:750
+        width:940,
+        height:650
       })
 
       const resized = faceapi.resizeResults(detections,{
-         width:800,
-        height:750
+         width:940,
+        height:650
       })
 
       faceapi.draw.drawDetections(canvasRef.current,resized)

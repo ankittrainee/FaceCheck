@@ -7,11 +7,7 @@
 
 .appcanvas {
   position: absolute;
-  left: 50%; /* Center the canvas horizontally */
-  transform: translateX(-50%); /* Adjust for centering */
-  max-width: 100%; /* Ensure the canvas doesn't exceed the viewport width */
-  max-height: 100vh; /* Ensure the canvas doesn't exceed the viewport height */
-  overflow: hidden; /* Hide any overflow content */
+  top: 100px;
 }
 
 .myapp {
