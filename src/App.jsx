@@ -67,7 +67,7 @@ function App(){
   }
 
   return (
-    <Container className="myapp">
+    <Container fluid className="myapp">
     <h1>FAce Detection</h1>
       <Container className="appvide">
         
