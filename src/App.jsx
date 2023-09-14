@@ -49,8 +49,8 @@ function App(){
       // DRAW YOU FACE IN WEBCAM
       canvasRef.current.innerHtml = faceapi.createCanvasFromMedia(videoRef.current)
       faceapi.matchDimensions(canvasRef.current,{
-        width:aspectRatio,
-        height:aspectRatio
+        width:940,
+        height:650
       })
 
       const resized = faceapi.resizeResults(detections,{
@@ -73,7 +73,7 @@ function App(){
         
       <video className='responsive-video' crossOrigin="anonymous" ref={videoRef} autoPlay></video>
       </Container>
-      <canvas ref={canvasRef} width="940" height="650"
+      <canvas ref={canvasRef} width="900" height="700"
       className="appcanvas"/>
     </Container>
     )
