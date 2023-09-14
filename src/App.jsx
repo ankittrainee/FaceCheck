@@ -41,30 +41,35 @@ function App(){
     })
   }
 
-  const faceMyDetect = ()=>{
-    setInterval(async()=>{
-      const detections = await faceapi.detectAllFaces(videoRef.current,
-        new faceapi.TinyFaceDetectorOptions()).withFaceLandmarks().withFaceExpressions()
-
-      // DRAW YOU FACE IN WEBCAM
-      canvasRef.current.innerHtml = faceapi.createCanvasFromMedia(videoRef.current)
-      faceapi.matchDimensions(canvasRef.current,{
-        width:940,
-        height:650
-      })
-
-      const resized = faceapi.resizeResults(detections,{
-         width:940,
-        height:650
-      })
-
-      faceapi.draw.drawDetections(canvasRef.current,resized)
-      faceapi.draw.drawFaceLandmarks(canvasRef.current,resized)
-      faceapi.draw.drawFaceExpressions(canvasRef.current,resized)
-
-
-    },1000)
-  }
+  const faceMyDetect = () => {
+    setInterval(async () => {
+      const detections = await faceapi
+        .detectAllFaces(videoRef.current, new faceapi.TinyFaceDetectorOptions())
+        .withFaceLandmarks()
+        .withFaceExpressions();
+  
+      // Get the dimensions of the parent container
+      const parentContainer = canvasRef.current.parentElement;
+      const parentWidth = parentContainer.clientWidth;
+      const parentHeight = parentContainer.clientHeight;
+  
+      // Set the canvas dimensions to match the parent container, maintaining the aspect ratio
+      canvasRef.current.width = parentWidth;
+      canvasRef.current.height = parentHeight;
+  
+      const context = canvasRef.current.getContext('2d');
+      context.clearRect(0, 0, canvasRef.current.width, canvasRef.current.height);
+  
+      const resized = faceapi.resizeResults(detections, {
+        width: '20%',
+        height: '20%',
+      });
+  
+      faceapi.draw.drawDetections(canvasRef.current, resized);
+      faceapi.draw.drawFaceLandmarks(canvasRef.current, resized);
+      faceapi.draw.drawFaceExpressions(canvasRef.current, resized);
+    }, 1000);
+  };
 
   return (
     <Container className="myapp">
