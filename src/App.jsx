@@ -66,15 +66,15 @@ function App(){
   }
 
   return (
-    <Container className="myapp">
+    <div className="myapp">
     <h1>FAce Detection</h1>
-      <Container className="appvide">
+      <div className="appvide">
         
-      <video className='responsive-video ' crossOrigin="anonymous" ref={videoRef} autoPlay></video>
-      </Container>
+      <video crossOrigin="anonymous" ref={videoRef} autoPlay></video>
+      </div>
       <canvas ref={canvasRef} width="940" height="650"
       className="appcanvas"/>
-    </Container>
+    </div>
     )
 
 }
