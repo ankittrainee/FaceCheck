@@ -69,7 +69,7 @@ function App(){
   return (
     <Container fluid className="myapp">
     <h1>FAce Detection</h1>
-      <Container fluid className="appvide">
+      <Container fluid >
         
       <video className='responsive-video' crossOrigin="anonymous" ref={videoRef} autoPlay></video>
       </Container>
