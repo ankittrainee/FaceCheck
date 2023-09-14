@@ -54,7 +54,7 @@ function App(){
       })
 
       const resized = faceapi.resizeResults(detections,{
-         width:10,
+         width:500,
         height:650
       })
 
