@@ -50,7 +50,7 @@ function App(){
       canvasRef.current.innerHtml = faceapi.createCanvasFromMedia(videoRef.current)
       faceapi.matchDimensions(canvasRef.current,{
         width:940,
-        height:650
+        height:950
       })
 
       const resized = faceapi.resizeResults(detections,{
