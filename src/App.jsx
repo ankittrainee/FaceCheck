@@ -54,8 +54,8 @@ function App(){
       })
 
       const resized = faceapi.resizeResults(detections,{
-         width:500,
-        height:650
+         width:600,
+        height:850
       })
 
       faceapi.draw.drawDetections(canvasRef.current,resized)
