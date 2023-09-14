@@ -67,15 +67,11 @@ function App(){
   }
 
   return (
-    <Container fluid className="myapp">
-    <h1>FAce Detection</h1>
-      <Container fluid >
-        
-      <video className='responsive-video' crossOrigin="anonymous" ref={videoRef} autoPlay></video>
-      </Container>
-      <canvas ref={canvasRef} width="800" height="750"
-      className="appcanvas"/>
-    </Container>
+    <div className="myapp">
+    <h1>Face Detection</h1>
+    <video className="responsive-video" crossOrigin="anonymous" ref={videoRef} autoPlay></video>
+    <canvas ref={canvasRef} width={window.innerWidth} height={window.innerHeight} className="appcanvas" />
+  </div>
     )
 
 }
