@@ -70,7 +70,7 @@ function App(){
     <div className="myapp">
     <h1>Face Detection</h1>
     <video className="responsive-video" crossOrigin="anonymous" ref={videoRef} autoPlay></video>
-    <canvas ref={canvasRef} width={window.innerWidth} height={window.innerHeight} className="appcanvas" />
+    <canvas ref={canvasRef} width={'50%'} height={'50%'} className="appcanvas" />
   </div>
     )
 
