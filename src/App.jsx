@@ -41,39 +41,30 @@ function App(){
     })
   }
 
-  const faceMyDetect = () => {
-    setInterval(async () => {
-      const detections = await faceapi
-        .detectAllFaces(videoRef.current, new faceapi.TinyFaceDetectorOptions())
-        .withFaceLandmarks()
-        .withFaceExpressions();
-  
-      // Get the dimensions of the parent container
-      const parentContainer = canvasRef.current.parentElement;
-      const parentWidth = parentContainer.clientWidth;
-  
-      // Calculate the canvas height based on the detected face size
-      const resizedDetections = faceapi.resizeResults(detections, {
-        width: parentWidth * 0.8, // Set width to 80% of parent width
-        height: (parentWidth * 0.8) / (940 / 650), // Maintain aspect ratio based on original width and height
-      });
-  
-      const context = canvasRef.current.getContext('2d');
-      context.clearRect(0, 0, canvasRef.current.width, canvasRef.current.height);
-  
-      // Calculate the position to center the face detection box horizontally
-      const xOffset = (parentWidth - parentWidth * 0.8) / 2;
-  
-      // Draw the resized detections with the adjusted position
-      faceapi.draw.drawDetections(canvasRef.current, resizedDetections.map(detection => ({
-        ...detection,
-        x: detection.x + xOffset, // Adjust the x position to center horizontally
-      })));
-      faceapi.draw.drawFaceLandmarks(canvasRef.current, resizedDetections);
-      faceapi.draw.drawFaceExpressions(canvasRef.current, resizedDetections);
-    }, 1000);
-  };
-  
+  const faceMyDetect = ()=>{
+    setInterval(async()=>{
+      const detections = await faceapi.detectAllFaces(videoRef.current,
+        new faceapi.TinyFaceDetectorOptions()).withFaceLandmarks().withFaceExpressions()
+
+      // DRAW YOU FACE IN WEBCAM
+      canvasRef.current.innerHtml = faceapi.createCanvasFromMedia(videoRef.current)
+      faceapi.matchDimensions(canvasRef.current,{
+        width:940,
+        height:650
+      })
+
+      const resized = faceapi.resizeResults(detections,{
+         width:400,
+        height:650
+      })
+
+      faceapi.draw.drawDetections(canvasRef.current,resized)
+      faceapi.draw.drawFaceLandmarks(canvasRef.current,resized)
+      faceapi.draw.drawFaceExpressions(canvasRef.current,resized)
+
+
+    },1000)
+  }
 
   return (
     <Container className="myapp">
