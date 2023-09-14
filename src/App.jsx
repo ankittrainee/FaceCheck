@@ -6,7 +6,7 @@ import { Container } from 'react-bootstrap'
 function App(){
   const videoRef = useRef()
   const canvasRef = useRef()
-
+  const aspectRatio = (940 + 650) / 2; 
   // LOAD FROM USEEFFECT
   useEffect(()=>{
     startVideo()
@@ -49,8 +49,8 @@ function App(){
       // DRAW YOU FACE IN WEBCAM
       canvasRef.current.innerHtml = faceapi.createCanvasFromMedia(videoRef.current)
       faceapi.matchDimensions(canvasRef.current,{
-        width:940,
-        height:650
+        width:aspectRatio,
+        height:aspectRatio
       })
 
       const resized = faceapi.resizeResults(detections,{
@@ -69,7 +69,7 @@ function App(){
   return (
     <Container fluid className="myapp">
     <h1>FAce Detection</h1>
-      <Container className="appvide">
+      <Container fluid className="appvide">
         
       <video className='responsive-video' crossOrigin="anonymous" ref={videoRef} autoPlay></video>
       </Container>
