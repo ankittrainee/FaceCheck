@@ -14,37 +14,35 @@ function App() {
     videoRef && loadModels();
   }, []);
 
-  // OPEN YOUR FACE WEBCAM
+  // OPEN YOU FACE WEBCAM
   const startVideo = () => {
-    navigator.mediaDevices
-      .getUserMedia({ video: true })
+    navigator.mediaDevices.getUserMedia({ video: true })
       .then((currentStream) => {
         videoRef.current.srcObject = currentStream;
       })
       .catch((err) => {
         console.log(err);
       });
-  };
+  }
 
   // LOAD MODELS FROM FACE API
   const loadModels = () => {
     Promise.all([
-      // THIS FOR FACE DETECT AND LOAD FROM YOUR PUBLIC/MODELS DIRECTORY
-      faceapi.nets.tinyFaceDetector.loadFromUri('/models'),
-      faceapi.nets.faceLandmark68Net.loadFromUri('/models'),
-      faceapi.nets.faceRecognitionNet.loadFromUri('/models'),
-      faceapi.nets.faceExpressionNet.loadFromUri('/models'),
-    ]).then(() => {
+      // THIS FOR FACE DETECT AND LOAD FROM YOU PUBLIC/MODELS DIRECTORY
+      faceapi.nets.tinyFaceDetector.loadFromUri("/models"),
+      faceapi.nets.faceLandmark68Net.loadFromUri("/models"),
+      faceapi.nets.faceRecognitionNet.loadFromUri("/models"),
+      faceapi.nets.faceExpressionNet.loadFromUri("/models")
+    ])
+    .then(() => {
       faceMyDetect();
     });
-  };
+  }
 
   const faceMyDetect = () => {
     setInterval(async () => {
-      const detections = await faceapi
-        .detectAllFaces(videoRef.current, new faceapi.TinyFaceDetectorOptions())
-        .withFaceLandmarks()
-        .withFaceExpressions();
+      const detections = await faceapi.detectAllFaces(videoRef.current,
+        new faceapi.TinyFaceDetectorOptions()).withFaceLandmarks().withFaceExpressions();
 
       // Clear the canvas before each update
       const canvas = canvasRef.current;
@@ -62,7 +60,7 @@ function App() {
         });
       }
     }, 1000);
-  };
+  }
 
   return (
     <div className="myapp">
