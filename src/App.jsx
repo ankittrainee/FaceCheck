@@ -51,25 +51,29 @@ function App(){
       // Get the dimensions of the parent container
       const parentContainer = canvasRef.current.parentElement;
       const parentWidth = parentContainer.clientWidth;
-      const parentHeight = parentContainer.clientHeight;
   
-      // Set the canvas dimensions to match the parent container, maintaining the aspect ratio
-      canvasRef.current.width = parentWidth;
-      canvasRef.current.height = parentHeight;
+      // Calculate the canvas height based on the detected face size
+      const resizedDetections = faceapi.resizeResults(detections, {
+        width: parentWidth * 0.8, // Set width to 80% of parent width
+        height: (parentWidth * 0.8) / (940 / 650), // Maintain aspect ratio based on original width and height
+      });
   
       const context = canvasRef.current.getContext('2d');
       context.clearRect(0, 0, canvasRef.current.width, canvasRef.current.height);
   
-      const resized = faceapi.resizeResults(detections, {
-        width: '20%',
-        height: '20%',
-      });
+      // Calculate the position to center the face detection box horizontally
+      const xOffset = (parentWidth - parentWidth * 0.8) / 2;
   
-      faceapi.draw.drawDetections(canvasRef.current, resized);
-      faceapi.draw.drawFaceLandmarks(canvasRef.current, resized);
-      faceapi.draw.drawFaceExpressions(canvasRef.current, resized);
+      // Draw the resized detections with the adjusted position
+      faceapi.draw.drawDetections(canvasRef.current, resizedDetections.map(detection => ({
+        ...detection,
+        x: detection.x + xOffset, // Adjust the x position to center horizontally
+      })));
+      faceapi.draw.drawFaceLandmarks(canvasRef.current, resizedDetections);
+      faceapi.draw.drawFaceExpressions(canvasRef.current, resizedDetections);
     }, 1000);
   };
+  
 
   return (
     <Container className="myapp">
