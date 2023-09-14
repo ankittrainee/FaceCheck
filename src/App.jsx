@@ -49,8 +49,8 @@ function App(){
       // DRAW YOU FACE IN WEBCAM
       canvasRef.current.innerHtml = faceapi.createCanvasFromMedia(videoRef.current)
       faceapi.matchDimensions(canvasRef.current,{
-        width:'50%',
-        height:'50%'
+        width:940,
+        height:650
       })
 
       const resized = faceapi.resizeResults(detections,{
