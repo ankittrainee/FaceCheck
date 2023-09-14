@@ -1,7 +1,6 @@
 import {useRef,useEffect} from 'react'
 import './App.css'
 import * as faceapi from 'face-api.js'
-import { Container } from 'react-bootstrap'
 
 function App(){
   const videoRef = useRef()
@@ -54,7 +53,7 @@ function App(){
       })
 
       const resized = faceapi.resizeResults(detections,{
-         width:400,
+         width:940,
         height:650
       })
 
@@ -71,7 +70,7 @@ function App(){
     <h1>FAce Detection</h1>
       <Container className="appvide">
         
-      <video className="responsive-video" crossOrigin="anonymous" ref={videoRef} autoPlay></video>
+      <video className='responsive-video ' crossOrigin="anonymous" ref={videoRef} autoPlay></video>
       </Container>
       <canvas ref={canvasRef} width="940" height="650"
       className="appcanvas"/>
