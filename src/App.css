@@ -1,25 +1,28 @@
 @import "bootstrap/dist/css/bootstrap.css";
-
-.appvide{
+.appvide {
   display: flex;
   align-items: center;
+  margin: 0; /* Remove margin */
 }
 
-.appcanvas{
+.appcanvas {
   position: absolute;
-  top: 100px
+  top: 100px;
 }
 
-.myapp{
+.myapp {
   display: flex;
   width: 100vw;
   height: 100vh;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
+  margin: 0; /* Remove margin */
+  padding: 0; /* Remove padding */
 }
+
 .responsive-video {
-  width: 100vw;
-  height: 100vh;
-  object-fit: cover; /* This ensures the video maintains its aspect ratio and covers the entire viewport */
+  width: 100%; /* Take up full width */
+  height: 100%; /* Take up full height */
+  object-fit: cover;
 }
